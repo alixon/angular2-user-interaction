@@ -1,4 +1,4 @@
-import { Injectable, Component, Input } from 'angular2/core';
+import { Injectable, Component, Input, EventEmitter } from 'angular2/core';
 
 @Injectable()
 @Component({
@@ -13,6 +13,7 @@ export class AlertComponent{
     @Input()
     message = "";
     isVisible = true;
+    onAccept = new EventEmitter<boolean>();
     
     show(message: string, title:string = 'Alert') {
         
@@ -24,6 +25,16 @@ export class AlertComponent{
     
     hide() {
         this.isVisible = false;
+    }
+    
+    cancel() {
+        this.onAccept.emit(false);
+        this.hide();
+    }
+    
+    accept() {
+        this.onAccept.emit(true);
+        this.hide();
     }
 }
 

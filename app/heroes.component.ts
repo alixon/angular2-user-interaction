@@ -1,5 +1,5 @@
 /// <reference path="./toaster.d.ts" />
-import {Component, Input, OnInit, ViewChild, provide} from 'angular2/core';
+import {Component, Input, OnInit, AfterViewInit, ViewChild, provide} from 'angular2/core';
 
 import {HeroDetailComponent} from './hero-detail.component';
 import {Hero} from './hero';
@@ -24,7 +24,7 @@ let toastrOptions = {
       provide(ToastOptions, { useValue: new ToastOptions(toastrOptions) })  
     ]
 })
-export class HeroesComponent implements OnInit {
+export class HeroesComponent implements OnInit,AfterViewInit {
     title = 'Tour of Heroes';
     public heroes:Hero[];
     selectedHero: Hero;
@@ -37,10 +37,14 @@ export class HeroesComponent implements OnInit {
     }
     
     @ViewChild(AlertComponent)
-    private _alert: AlertComponent;
+    private _confirm: AlertComponent;
 
     ngOnInit() {
       this.getHeroes();
+    }
+    
+    ngAfterViewInit() {
+      this._confirm.onAccept.subscribe(x => console.log(x));
     }
 
     
@@ -49,16 +53,18 @@ export class HeroesComponent implements OnInit {
     }
     
     removeSelectedHeroes() {
-      console.log(this._alert);
+      
+      
+      console.log(this._confirm);
       var selectedHeroes = this.getSelectedHeroes();
       this.heroes = this.heroes.filter( hero => return !selectedHeroes.includes(hero) });
       
-      // this.alert.show("Deleted!","");
-      this._alert.message = "teste";
-      this._alert.show();
-      
+      this._confirm.show();
+
       this.toastr.warning('You removed ' + selectedHeroes.length +  ' heroes!', 'Congratulations!');
     }
+    
+    
     
     getHeroes() {
       this._heroService.getHeroes().then(heroes => this.heroes = heroes);

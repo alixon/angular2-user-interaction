@@ -23,6 +23,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.title = "";
                     this.message = "";
                     this.isVisible = true;
+                    this.onAccept = new core_1.EventEmitter();
                 }
                 AlertComponent.prototype.show = function (message, title) {
                     if (title === void 0) { title = 'Alert'; }
@@ -32,6 +33,14 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 AlertComponent.prototype.hide = function () {
                     this.isVisible = false;
+                };
+                AlertComponent.prototype.cancel = function () {
+                    this.onAccept.emit(false);
+                    this.hide();
+                };
+                AlertComponent.prototype.accept = function () {
+                    this.onAccept.emit(true);
+                    this.hide();
                 };
                 __decorate([
                     core_1.Input(), 

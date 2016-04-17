@@ -44,16 +44,17 @@ System.register(['angular2/core', './hero-detail.component', './hero.service', '
                 HeroesComponent.prototype.ngOnInit = function () {
                     this.getHeroes();
                 };
+                HeroesComponent.prototype.ngAfterViewInit = function () {
+                    this._confirm.onAccept.subscribe(function (x) { return console.log(x); });
+                };
                 HeroesComponent.prototype.getSelectedHeroes = function () {
                     return this.heroes.filter(function (hero) { return hero.selected; });
                 };
                 HeroesComponent.prototype.removeSelectedHeroes = function () {
-                    console.log(this._alert);
+                    console.log(this._confirm);
                     var selectedHeroes = this.getSelectedHeroes();
                     this.heroes = this.heroes.filter(function (hero) { return !selectedHeroes.includes(hero); });
-                    // this.alert.show("Deleted!","");
-                    this._alert.message = "teste";
-                    this._alert.show();
+                    this._confirm.show();
                     this.toastr.warning('You removed ' + selectedHeroes.length + ' heroes!', 'Congratulations!');
                 };
                 HeroesComponent.prototype.getHeroes = function () {
@@ -69,7 +70,7 @@ System.register(['angular2/core', './hero-detail.component', './hero.service', '
                 __decorate([
                     core_1.ViewChild(alert_component_1.AlertComponent), 
                     __metadata('design:type', alert_component_1.AlertComponent)
-                ], HeroesComponent.prototype, "_alert", void 0);
+                ], HeroesComponent.prototype, "_confirm", void 0);
                 HeroesComponent = __decorate([
                     core_1.Component({
                         selector: 'my-heroes',
