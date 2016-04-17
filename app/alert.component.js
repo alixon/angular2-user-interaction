@@ -22,38 +22,30 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function AlertComponent() {
                     this.title = "";
                     this.message = "";
-                    this.isVisible = true;
-                    this.onAccept = new core_1.EventEmitter();
+                    this.isVisible = false;
                 }
-                AlertComponent.prototype.show = function (message, title) {
+                AlertComponent.prototype.show = function (message, title, confirmationResult) {
                     if (title === void 0) { title = 'Alert'; }
+                    this.isVisible = true;
                     this.message = message;
                     this.title = title;
-                    this.isVisible = true;
+                    this.confirmationResult = confirmationResult;
                 };
                 AlertComponent.prototype.hide = function () {
                     this.isVisible = false;
                 };
                 AlertComponent.prototype.cancel = function () {
-                    this.onAccept.emit(false);
+                    this.confirmationResult(false);
                     this.hide();
                 };
                 AlertComponent.prototype.accept = function () {
-                    this.onAccept.emit(true);
+                    this.confirmationResult(true);
                     this.hide();
                 };
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
-                ], AlertComponent.prototype, "title", void 0);
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
-                ], AlertComponent.prototype, "message", void 0);
                 AlertComponent = __decorate([
                     core_1.Injectable(),
                     core_1.Component({
-                        selector: 'my-alert',
+                        selector: 'my-modal',
                         templateUrl: './app/alert.component.html',
                         styleUrls: ['./app/alert.component.css'],
                         directives: [],

@@ -44,18 +44,18 @@ System.register(['angular2/core', './hero-detail.component', './hero.service', '
                 HeroesComponent.prototype.ngOnInit = function () {
                     this.getHeroes();
                 };
-                HeroesComponent.prototype.ngAfterViewInit = function () {
-                    this._confirm.onAccept.subscribe(function (x) { return console.log(x); });
-                };
                 HeroesComponent.prototype.getSelectedHeroes = function () {
                     return this.heroes.filter(function (hero) { return hero.selected; });
                 };
                 HeroesComponent.prototype.removeSelectedHeroes = function () {
-                    console.log(this._confirm);
-                    var selectedHeroes = this.getSelectedHeroes();
-                    this.heroes = this.heroes.filter(function (hero) { return !selectedHeroes.includes(hero); });
-                    this._confirm.show();
-                    this.toastr.warning('You removed ' + selectedHeroes.length + ' heroes!', 'Congratulations!');
+                    var _this = this;
+                    this._confirm.show('Are you sure?', 'Remove Heroes', function (result) {
+                        if (result === false)
+                            return;
+                        var selectedHeroes = _this.getSelectedHeroes();
+                        _this.heroes = _this.heroes.filter(function (hero) { return !selectedHeroes.includes(hero); });
+                        _this.toastr.warning('You removed ' + selectedHeroes.length + ' heroes!', 'Congratulations!');
+                    });
                 };
                 HeroesComponent.prototype.getHeroes = function () {
                     var _this = this;

@@ -1,26 +1,23 @@
-import { Injectable, Component, Input, EventEmitter } from 'angular2/core';
+import { Injectable, Component } from 'angular2/core';
 
 @Injectable()
 @Component({
-    selector: 'my-alert',
+    selector: 'my-modal',
     templateUrl: './app/alert.component.html',
     styleUrls: ['./app/alert.component.css'],
     directives: [],
 })
 export class AlertComponent{
-    @Input()
     title = "";
-    @Input()
     message = "";
-    isVisible = true;
-    onAccept = new EventEmitter<boolean>();
+    isVisible = false;
     
-    show(message: string, title:string = 'Alert') {
+    show(message: string, title:string = 'Alert', confirmationResult) {
         
-        
+        this.isVisible = true;
         this.message = message;
         this.title = title;
-        this.isVisible = true;
+        this.confirmationResult = confirmationResult;
     }
     
     hide() {
@@ -28,12 +25,12 @@ export class AlertComponent{
     }
     
     cancel() {
-        this.onAccept.emit(false);
+        this.confirmationResult(false);
         this.hide();
     }
     
     accept() {
-        this.onAccept.emit(true);
+        this.confirmationResult(true);
         this.hide();
     }
 }

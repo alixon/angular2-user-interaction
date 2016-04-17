@@ -1,5 +1,5 @@
 /// <reference path="./toaster.d.ts" />
-import {Component, Input, OnInit, AfterViewInit, ViewChild, provide} from 'angular2/core';
+import {Component, Input, OnInit, ViewChild, provide} from 'angular2/core';
 
 import {HeroDetailComponent} from './hero-detail.component';
 import {Hero} from './hero';
@@ -43,25 +43,22 @@ export class HeroesComponent implements OnInit,AfterViewInit {
       this.getHeroes();
     }
     
-    ngAfterViewInit() {
-      this._confirm.onAccept.subscribe(x => console.log(x));
-    }
-
-    
     getSelectedHeroes() {
       return this.heroes.filter(function(hero) { return hero.selected });
     }
     
     removeSelectedHeroes() {
-      
-      
-      console.log(this._confirm);
-      var selectedHeroes = this.getSelectedHeroes();
-      this.heroes = this.heroes.filter( hero => return !selectedHeroes.includes(hero) });
-      
-      this._confirm.show();
-
-      this.toastr.warning('You removed ' + selectedHeroes.length +  ' heroes!', 'Congratulations!');
+      this._confirm.show(
+        'Are you sure?', 'Remove Heroes', 
+        result => {
+          if( result === false ) return;
+          
+          var selectedHeroes = this.getSelectedHeroes();
+          this.heroes = this.heroes.filter( hero => return !selectedHeroes.includes(hero) );
+          
+          this.toastr.warning('You removed ' + selectedHeroes.length +  ' heroes!', 'Congratulations!');
+        }
+      );
     }
     
     
