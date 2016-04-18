@@ -3,8 +3,8 @@ import { Injectable, Component } from 'angular2/core';
 @Injectable()
 @Component({
     selector: 'my-modal',
-    templateUrl: './app/alert.component.html',
-    styleUrls: ['./app/alert.component.css'],
+    templateUrl: './app/my-modal/alert.component.html',
+    styleUrls: ['./app/my-modal/alert.component.css'],
     directives: [],
 })
 export class AlertComponent{

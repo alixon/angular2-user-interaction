@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero-detail.component', './hero.service', 'ng2-toastr/ng2-toastr', "./alert.component"], function(exports_1, context_1) {
+System.register(['angular2/core', './hero-detail.component', './hero.service', 'ng2-toastr/ng2-toastr', "./my-modal/alert.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

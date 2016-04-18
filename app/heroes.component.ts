@@ -6,7 +6,7 @@ import {Hero} from './hero';
 import {HeroService} from './hero.service';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ToastOptions} from "ng2-toastr/ng2-toastr";
-import {AlertComponent} from "./alert.component";
+import {AlertComponent} from "./my-modal/alert.component";
 
 let toastrOptions = {
     autoDismiss: false,
