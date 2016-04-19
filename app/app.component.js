@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './hero.service', './heroes.component', './dashboard.component', './hero-detail.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'ng2-slim-loading-bar/ng2-slim-loading-bar', './hero.service', './heroes.component', './dashboard.component', './hero-detail.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './hero.service', './heroes
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1;
+    var core_1, router_1, ng2_slim_loading_bar_1, hero_service_1, heroes_component_1, dashboard_component_1, hero_detail_component_1;
     var AppComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', 'angular2/router', './hero.service', './heroes
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (ng2_slim_loading_bar_1_1) {
+                ng2_slim_loading_bar_1 = ng2_slim_loading_bar_1_1;
             },
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
@@ -34,9 +37,23 @@ System.register(['angular2/core', 'angular2/router', './hero.service', './heroes
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(_router, slimLoadingBarService) {
+                    var _this = this;
+                    this._router = _router;
+                    this.slimLoadingBarService = slimLoadingBarService;
                     this.title = 'Tour of Heroes';
+                    _router.subscribe(function () { _this.startLoading(); });
                 }
+                ;
+                AppComponent.prototype.startLoading = function () {
+                    var _this = this;
+                    this.slimLoadingBarService.start(function () {
+                        console.log('Loading complete');
+                    });
+                    setTimeout(function () {
+                        _this.slimLoadingBarService.complete();
+                    }, 2000);
+                };
                 AppComponent = __decorate([
                     router_1.RouteConfig([
                         {
@@ -56,11 +73,11 @@ System.register(['angular2/core', 'angular2/router', './hero.service', './heroes
                     ]),
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <nav>\n      <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n      <a [routerLink]=\"['Heroes']\">Heroes</a>\n    </nav>\n    <router-outlet>\n  ",
-                        directives: [router_1.ROUTER_DIRECTIVES, heroes_component_1.HeroesComponent],
-                        providers: [router_1.ROUTER_PROVIDERS, hero_service_1.HeroService]
+                        template: "\n    <h1>{{title}}</h1>\n    <ng2-slim-loading-bar [height]=\"2\" [color] = \"'red'\"></ng2-slim-loading-bar>\n    \n    <nav>\n      <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n      <a [routerLink]=\"['Heroes']\">Heroes</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
+                        directives: [router_1.ROUTER_DIRECTIVES, ng2_slim_loading_bar_1.SlimLoadingBar, heroes_component_1.HeroesComponent],
+                        providers: [router_1.ROUTER_PROVIDERS, ng2_slim_loading_bar_1.SlimLoadingBarService, hero_service_1.HeroService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router, ng2_slim_loading_bar_1.SlimLoadingBarService])
                 ], AppComponent);
                 return AppComponent;
             }());

@@ -40,7 +40,7 @@ export class HeroesComponent implements OnInit,AfterViewInit {
     private _confirm: AlertComponent;
 
     ngOnInit() {
-      this.getHeroes();
+        this.getHeroes();
     }
     
     getSelectedHeroes() {

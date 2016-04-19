@@ -6,6 +6,7 @@
     <title>Angular 2 QuickStart</title>
 
     <link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
     <!-- 1. Загрузите библиотеки -->
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
@@ -18,11 +19,16 @@
     <!-- 2. Настройте SystemJS -->
     <script>
       System.config({
+        "baseURL": "/",
         packages: {        
           app: {
             format: 'register',
             defaultExtension: 'js'
-          }
+          },
+          "ng2-slim-loading-bar": {"defaultExtension": "js"}
+        },
+        "paths": {
+          "ng2-slim-loading-bar*": "node_modules/ng2-slim-loading-bar*"
         }
       });
       System.import('app/boot')
