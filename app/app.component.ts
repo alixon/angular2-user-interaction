@@ -4,7 +4,10 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import { HeroService }     from './hero.service';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
-import { HeroDetailComponent } from './hero-detail.component'
+import { HeroDetailComponent } from './hero-detail.component';
+import { HeroesMapComponent } from './heroes-map/heroes-map.component';
+
+
 
 @RouteConfig([
   {
@@ -20,7 +23,12 @@ import { HeroDetailComponent } from './hero-detail.component'
     path: '/detail/:id',
     name: 'HeroDetail',
     component: HeroDetailComponent
+  },{
+    path: '/map',
+    name: 'HeroesMap',
+    component: HeroesMapComponent
   }
+  
 ])
 @Component({
   selector: 'my-app',
@@ -29,12 +37,14 @@ import { HeroDetailComponent } from './hero-detail.component'
     <nav>
       <a [routerLink]="['Dashboard']">Dashboard</a>
       <a [routerLink]="['Heroes']">Heroes</a>
+      <a [routerLink]="['HeroesMap']">Map</a>
     </nav>
     <router-outlet>
   `,
-  directives: [ ROUTER_DIRECTIVES, HeroesComponent ],
+  directives: [ ROUTER_DIRECTIVES, HeroesComponent, HeroesMapComponent ],
   providers: [ ROUTER_PROVIDERS, HeroService ]
 })
 export class AppComponent {
+
   title = 'Tour of Heroes';
 }

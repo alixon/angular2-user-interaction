@@ -19,9 +19,10 @@ let toastrOptions = {
     templateUrl: './app/partial.html',
     styleUrls: ['./app/heroes.component.css'],
     directives: [HeroDetailComponent,  AlertComponent],
-    providers: [AlertComponent,
+    providers: [
+      AlertComponent,
       ToastsManager,
-      provide(ToastOptions, { useValue: new ToastOptions(toastrOptions) })  
+      provide(ToastOptions, { useValue: new ToastOptions(toastrOptions) })
     ]
 })
 export class HeroesComponent implements OnInit,AfterViewInit {
@@ -54,7 +55,7 @@ export class HeroesComponent implements OnInit,AfterViewInit {
           if( result === false ) return;
           
           var selectedHeroes = this.getSelectedHeroes();
-          this.heroes = this.heroes.filter( hero => return !selectedHeroes.includes(hero) );
+          this.heroes = this.heroes.filter( hero => {return !selectedHeroes.includes(hero)} );
           
           this.toastr.warning('You removed ' + selectedHeroes.length +  ' heroes!', 'Congratulations!');
         }

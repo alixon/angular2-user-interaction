@@ -15,4 +15,14 @@ export class HeroService {
             heroes => heroes.filter(hero => hero.id === id)[0]
         );
     }
+    
+    generateCoordinate() {
+        var lat = 52.7236;
+        var lng = 41.4423;
+        
+        var dlat = Math.random() - 0.5 ;
+        var dlng = Math.random() - 0.5 ;
+        
+        return [ lat + dev, lng + dev];
+    }
 }
