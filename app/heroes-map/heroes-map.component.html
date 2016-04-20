@@ -1,0 +1,7 @@
+<sebm-google-map [zoom]="mapOptions.zoom" [latitude]="mapOptions.lat" [longitude]="mapOptions.lng">
+    <sebm-google-map-marker *ngFor="#hero of heroes" [latitude]="hero.coordinates[0]" [longitude]="hero.coordinates[1]" [label]="hero.name" [markerDraggable]="true">
+       <sebm-google-map-info-window [disableAutoPan]="true">
+         {{hero.name}} 
+       </sebm-google-map-info-window>
+     </sebm-google-map-marker>
+</sebm-google-map>

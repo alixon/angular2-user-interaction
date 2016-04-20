@@ -1,13 +1,13 @@
 /// <reference path="./toaster.d.ts" />
 import {Component, Input, OnInit, ViewChild, provide} from 'angular2/core';
 import {Router} from "angular2/router";
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import {ToastOptions} from "ng2-toastr/ng2-toastr";
+import {ToastsManager, ToastOptions} from 'ng2-toastr/ng2-toastr';
 
 import {HeroDetailComponent} from 'app/hero-detail/hero-detail.component';
 import {Hero} from 'app/hero';
 import {HeroService} from 'app/hero.service';
-import {AlertComponent} from "app/alert.component";
+import {AlertComponent} from "app/my-modal/alert.component";
+
 
 let toastrOptions = {
     autoDismiss: false,
@@ -20,9 +20,10 @@ let toastrOptions = {
     templateUrl: './app/partial.html',
     styleUrls: ['./app/heroes.component.css'],
     directives: [HeroDetailComponent,  AlertComponent],
-    providers: [AlertComponent,
+    providers: [
+      AlertComponent,
       ToastsManager,
-      provide(ToastOptions, { useValue: new ToastOptions(toastrOptions) })  
+      provide(ToastOptions, { useValue: new ToastOptions(toastrOptions) })
     ]
 })
 export class HeroesComponent implements OnInit,AfterViewInit {
@@ -56,7 +57,7 @@ export class HeroesComponent implements OnInit,AfterViewInit {
           if( result === false ) return;
           
           var selectedHeroes = this.getSelectedHeroes();
-          this.heroes = this.heroes.filter( hero => return !selectedHeroes.includes(hero) );
+          this.heroes = this.heroes.filter( hero => {return !selectedHeroes.includes(hero)} );
           
           this.toastr.warning('You removed ' + selectedHeroes.length +  ' heroes!', 'Congratulations!');
         }

@@ -1,4 +1,4 @@
-System.register(['angular2/core', "angular2/router", 'ng2-toastr/ng2-toastr', 'app/hero-detail/hero-detail.component', 'app/hero.service', "app/alert.component"], function(exports_1, context_1) {
+System.register(['angular2/core', "angular2/router", 'ng2-toastr/ng2-toastr', 'app/hero-detail/hero-detail.component', 'app/hero.service', "app/my-modal/alert.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', "angular2/router", 'ng2-toastr/ng2-toastr', 'a
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, ng2_toastr_1, ng2_toastr_2, hero_detail_component_1, hero_service_1, alert_component_1;
+    var core_1, router_1, ng2_toastr_1, hero_detail_component_1, hero_service_1, alert_component_1;
     var toastrOptions, HeroesComponent;
     return {
         setters:[
@@ -22,7 +22,6 @@ System.register(['angular2/core', "angular2/router", 'ng2-toastr/ng2-toastr', 'a
             },
             function (ng2_toastr_1_1) {
                 ng2_toastr_1 = ng2_toastr_1_1;
-                ng2_toastr_2 = ng2_toastr_1_1;
             },
             function (hero_detail_component_1_1) {
                 hero_detail_component_1 = hero_detail_component_1_1;
@@ -84,9 +83,10 @@ System.register(['angular2/core', "angular2/router", 'ng2-toastr/ng2-toastr', 'a
                         templateUrl: './app/partial.html',
                         styleUrls: ['./app/heroes.component.css'],
                         directives: [hero_detail_component_1.HeroDetailComponent, alert_component_1.AlertComponent],
-                        providers: [alert_component_1.AlertComponent,
+                        providers: [
+                            alert_component_1.AlertComponent,
                             ng2_toastr_1.ToastsManager,
-                            core_1.provide(ng2_toastr_2.ToastOptions, { useValue: new ng2_toastr_2.ToastOptions(toastrOptions) })
+                            core_1.provide(ng2_toastr_1.ToastOptions, { useValue: new ng2_toastr_1.ToastOptions(toastrOptions) })
                         ]
                     }), 
                     __metadata('design:paramtypes', [(typeof (_b = typeof hero_service_1.HeroService !== 'undefined' && hero_service_1.HeroService) === 'function' && _b) || Object, ng2_toastr_1.ToastsManager, router_1.Router])
