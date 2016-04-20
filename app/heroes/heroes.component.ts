@@ -4,8 +4,8 @@ import {Router} from "angular2/router";
 import {ToastsManager, ToastOptions} from 'ng2-toastr/ng2-toastr';
 
 import {HeroDetailComponent} from 'app/hero-detail/hero-detail.component';
-import {Hero} from 'app/hero';
-import {HeroService} from 'app/hero.service';
+import {Hero} from 'app/shared/hero';
+import {HeroService} from 'app/shared/hero.service';
 import {AlertComponent} from "app/my-modal/alert.component";
 
 
@@ -17,8 +17,8 @@ let toastrOptions = {
 
 @Component({
     selector: 'my-heroes',
-    templateUrl: './app/partial.html',
-    styleUrls: ['./app/heroes.component.css'],
+    templateUrl: 'app/heroes/heroes.component.html',
+    styleUrls: ['app/heroes/heroes.component.css'],
     directives: [HeroDetailComponent,  AlertComponent],
     providers: [
       AlertComponent,

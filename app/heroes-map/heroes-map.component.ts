@@ -2,8 +2,8 @@
 import { Component, OnInit } from "angular2/core";
 import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES } from 'angular2-google-maps/core';
 
-import {Hero} from 'app/hero';
-import {HeroService} from 'app/hero.service';
+import {Hero} from 'app/shared/hero';
+import {HeroService} from 'app/shared/hero.service';
 
 @Component({
     selector: "heroes-map",

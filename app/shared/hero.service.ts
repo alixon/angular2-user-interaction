@@ -1,5 +1,5 @@
 
-import {HEROES} from './mock-heroes';
+import {HEROES} from 'app/shared/mock-heroes';
 import {Injectable} from 'angular2/core';
 
 

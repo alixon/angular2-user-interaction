@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'ng2-slim-loading-bar/ng2-slim-loading-bar', './hero.service', './heroes.component', './dashboard.component', 'app/heroes-map/heroes-map.component', 'app/hero-detail/hero-detail.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'ng2-slim-loading-bar/ng2-slim-loading-bar', 'app/shared/hero.service', 'app/heroes/heroes.component', 'app/dashboard/dashboard.component', 'app/heroes-map/heroes-map.component', 'app/hero-detail/hero-detail.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -80,8 +80,9 @@ System.register(['angular2/core', 'angular2/router', 'ng2-slim-loading-bar/ng2-s
                     ]),
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <ng2-slim-loading-bar [height]=\"2\" [color] = \"'red'\"></ng2-slim-loading-bar>\n    \n    <nav>\n      <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n      <a [routerLink]=\"['Heroes']\">Heroes</a>\n      <a [routerLink]=\"['HeroesMap']\">Map</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
-                        directives: [router_1.ROUTER_DIRECTIVES, ng2_slim_loading_bar_1.SlimLoadingBar, heroes_component_1.HeroesComponent],
+                        styleUrls: ['app/app.component.css'],
+                        templateUrl: 'app/app.component.html',
+                        directives: [router_1.ROUTER_DIRECTIVES, ng2_slim_loading_bar_1.SlimLoadingBar, heroes_component_1.HeroesComponent, heroes_map_component_1.HeroesMapComponent],
                         providers: [router_1.ROUTER_PROVIDERS, ng2_slim_loading_bar_1.SlimLoadingBarService, hero_service_1.HeroService]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, ng2_slim_loading_bar_1.SlimLoadingBarService])

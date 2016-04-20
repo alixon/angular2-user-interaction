@@ -1,5 +1,5 @@
 
-import {Hero} from './hero';
+import {Hero} from 'app/shared//hero';
 
 
 export var HEROES: Hero[] = [
