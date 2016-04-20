@@ -5,7 +5,7 @@ import { SlimLoadingBarService, SlimLoadingBar } from 'ng2-slim-loading-bar/ng2-
 import { HeroService }     from './hero.service';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
-import { HeroDetailComponent } from './hero-detail.component'
+import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component'
 
 @RouteConfig([
   {

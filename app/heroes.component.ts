@@ -1,12 +1,13 @@
 /// <reference path="./toaster.d.ts" />
 import {Component, Input, OnInit, ViewChild, provide} from 'angular2/core';
-
-import {HeroDetailComponent} from './hero-detail.component';
-import {Hero} from './hero';
-import {HeroService} from './hero.service';
+import {Router} from "angular2/router";
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ToastOptions} from "ng2-toastr/ng2-toastr";
-import {AlertComponent} from "./alert.component";
+
+import {HeroDetailComponent} from 'app/hero-detail/hero-detail.component';
+import {Hero} from 'app/hero';
+import {HeroService} from 'app/hero.service';
+import {AlertComponent} from "app/alert.component";
 
 let toastrOptions = {
     autoDismiss: false,
@@ -31,7 +32,8 @@ export class HeroesComponent implements OnInit,AfterViewInit {
     selectedHeroes: Hero[];
     constructor(
       private _heroService: HeroService, 
-      public toastr: ToastsManager
+      public toastr: ToastsManager,
+      private _router: Router,
     ) {
       
     }
@@ -74,6 +76,10 @@ export class HeroesComponent implements OnInit,AfterViewInit {
     onSelect(hero:Hero) { 
         this.selectedHero = hero; 
     }
+    
+    gotoDetail() {
+        this._router.navigate(['HeroDetail', { id: this.selectedHero.id }]);
+   }
     
 }
 

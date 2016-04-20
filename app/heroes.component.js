@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero-detail.component', './hero.service', 'ng2-toastr/ng2-toastr', "./alert.component"], function(exports_1, context_1) {
+System.register(['angular2/core', "angular2/router", 'ng2-toastr/ng2-toastr', 'app/hero-detail/hero-detail.component', 'app/hero.service', "app/alert.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,22 +10,25 @@ System.register(['angular2/core', './hero-detail.component', './hero.service', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, hero_detail_component_1, hero_service_1, ng2_toastr_1, ng2_toastr_2, alert_component_1;
+    var core_1, router_1, ng2_toastr_1, ng2_toastr_2, hero_detail_component_1, hero_service_1, alert_component_1;
     var toastrOptions, HeroesComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (ng2_toastr_1_1) {
+                ng2_toastr_1 = ng2_toastr_1_1;
+                ng2_toastr_2 = ng2_toastr_1_1;
+            },
             function (hero_detail_component_1_1) {
                 hero_detail_component_1 = hero_detail_component_1_1;
             },
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
-            },
-            function (ng2_toastr_1_1) {
-                ng2_toastr_1 = ng2_toastr_1_1;
-                ng2_toastr_2 = ng2_toastr_1_1;
             },
             function (alert_component_1_1) {
                 alert_component_1 = alert_component_1_1;
@@ -36,9 +39,10 @@ System.register(['angular2/core', './hero-detail.component', './hero.service', '
                 positionClass: 'toast-bottom-right',
             };
             HeroesComponent = (function () {
-                function HeroesComponent(_heroService, toastr) {
+                function HeroesComponent(_heroService, toastr, _router) {
                     this._heroService = _heroService;
                     this.toastr = toastr;
+                    this._router = _router;
                     this.title = 'Tour of Heroes';
                 }
                 HeroesComponent.prototype.ngOnInit = function () {
@@ -67,9 +71,12 @@ System.register(['angular2/core', './hero-detail.component', './hero.service', '
                 HeroesComponent.prototype.onSelect = function (hero) {
                     this.selectedHero = hero;
                 };
+                HeroesComponent.prototype.gotoDetail = function () {
+                    this._router.navigate(['HeroDetail', { id: this.selectedHero.id }]);
+                };
                 __decorate([
                     core_1.ViewChild(alert_component_1.AlertComponent), 
-                    __metadata('design:type', alert_component_1.AlertComponent)
+                    __metadata('design:type', (typeof (_a = typeof alert_component_1.AlertComponent !== 'undefined' && alert_component_1.AlertComponent) === 'function' && _a) || Object)
                 ], HeroesComponent.prototype, "_confirm", void 0);
                 HeroesComponent = __decorate([
                     core_1.Component({
@@ -82,9 +89,10 @@ System.register(['angular2/core', './hero-detail.component', './hero.service', '
                             core_1.provide(ng2_toastr_2.ToastOptions, { useValue: new ng2_toastr_2.ToastOptions(toastrOptions) })
                         ]
                     }), 
-                    __metadata('design:paramtypes', [hero_service_1.HeroService, ng2_toastr_1.ToastsManager])
+                    __metadata('design:paramtypes', [(typeof (_b = typeof hero_service_1.HeroService !== 'undefined' && hero_service_1.HeroService) === 'function' && _b) || Object, ng2_toastr_1.ToastsManager, router_1.Router])
                 ], HeroesComponent);
                 return HeroesComponent;
+                var _a, _b;
             }());
             exports_1("HeroesComponent", HeroesComponent);
         }

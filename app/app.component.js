@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'ng2-slim-loading-bar/ng2-slim-loading-bar', './hero.service', './heroes.component', './dashboard.component', './hero-detail.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'ng2-slim-loading-bar/ng2-slim-loading-bar', './hero.service', './heroes.component', './dashboard.component', 'app/hero-detail/hero-detail.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
