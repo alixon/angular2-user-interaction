@@ -1,5 +1,5 @@
 import {Injectable, provide} from 'angular2/core';
-import {Observable} from 'rxjs';
+import { Observable } from "rxjs/Observable";
 
 const GEOLOCATION_ERRORS = {
 	'errors.location.unsupportedBrowser': 'Browser does not support location services',

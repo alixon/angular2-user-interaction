@@ -5,12 +5,14 @@ import { ANGULAR2_GOOGLE_MAPS_DIRECTIVES } from 'angular2-google-maps/core';
 
 import { HeroService } from 'app/shared/hero.service';
 import { Hero } from 'app/shared/hero';
+import { GeolocationService } from 'app/shared/geolocation.service';
 
 @Component({
     selector: 'my-hero-detail',
     templateUrl: 'app/hero-detail/hero-detail.component.html',
     styleUrls: ['app/hero-detail/hero-detail.component.css'],
-    directives:[ ANGULAR2_GOOGLE_MAPS_DIRECTIVES ]
+    directives:[ ANGULAR2_GOOGLE_MAPS_DIRECTIVES ],
+    providers: [ GeolocationService ]
 })
 export class HeroDetailComponent implements OnInit {
     @Input()
@@ -20,7 +22,11 @@ export class HeroDetailComponent implements OnInit {
         centerCords: [0,0]
     };
         
-    constructor(private _heroService: HeroService, private _routeParams: RouteParams) {}
+    constructor(
+        private _heroService: HeroService, 
+        private _routeParams: RouteParams,
+        private _geoLocation: GeolocationService
+    ) {}
     
     setCoordinates(event) {
         this.hero.coordinates = [ event.coords.lat, event.coords.lng ];
@@ -34,6 +40,15 @@ export class HeroDetailComponent implements OnInit {
                 this.mapOptions.centerCords = hero.coordinates;
             });
             
+    }
+    
+    getBrowserLocation() {
+        this._geoLocation.getLocation().subscribe((result) => {
+            let browserCoords = [ result.coords.latitude, result.coords.longitude ];
+            this.hero.coordinates = browserCoords;
+            this.mapOptions.centerCords = browserCoords;
+            this.mapOptions.zoom = 15;
+        });
     }
 
     goBack() {
