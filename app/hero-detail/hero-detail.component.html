@@ -6,5 +6,25 @@
     <label>name: </label>
     <input [(ngModel)]="hero.name" placeholder="name" />
   </div>
+  
+  <div>
+    <label>Hero Location:</label>
+    <sebm-google-map 
+      [zoom]="mapOptions.zoom" 
+      [latitude]="mapOptions.centerCords[0]" 
+      [longitude]="mapOptions.centerCords[1]">
+      <sebm-google-map-marker 
+        [latitude]="hero.coordinates[0]" 
+        [longitude]="hero.coordinates[1]" 
+        [label]="hero.name" 
+        [markerDraggable]="true"
+        (dragEnd)="setCoordinates($event)">
+         <sebm-google-map-info-window [disableAutoPan]="true">
+           {{hero.name}} 
+         </sebm-google-map-info-window>
+       </sebm-google-map-marker>
+    </sebm-google-map>
+  </div>
+  
   <button (click)="goBack()">Back</button>
 </div>
