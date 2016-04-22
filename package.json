@@ -9,6 +9,9 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@angular2-material/checkbox": "^2.0.0-alpha.3",
+    "@angular2-material/core": "^2.0.0-alpha.3",
+    "@angular2-material/sidenav": "^2.0.0-alpha.3",
     "angular2": "^2.0.0-beta.15",
     "angular2-google-maps": "^0.9.0",
     "es6-promise": "^3.0.2",

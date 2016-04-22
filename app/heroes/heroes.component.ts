@@ -2,12 +2,12 @@
 import {Component, Input, OnInit, ViewChild, provide} from 'angular2/core';
 import {Router} from "angular2/router";
 import {ToastsManager, ToastOptions} from 'ng2-toastr/ng2-toastr';
+import { MdCheckbox } from '@angular2-material/checkbox';
 
 import {HeroDetailComponent} from 'app/hero-detail/hero-detail.component';
 import {Hero} from 'app/shared/hero';
 import {HeroService} from 'app/shared/hero.service';
 import {AlertComponent} from "app/my-modal/alert.component";
-
 
 let toastrOptions = {
     autoDismiss: false,
@@ -19,7 +19,7 @@ let toastrOptions = {
     selector: 'my-heroes',
     templateUrl: 'app/heroes/heroes.component.html',
     styleUrls: ['app/heroes/heroes.component.css'],
-    directives: [HeroDetailComponent,  AlertComponent],
+    directives: [ MdCheckbox, HeroDetailComponent, AlertComponent, MdCheckbox],
     providers: [
       AlertComponent,
       ToastsManager,

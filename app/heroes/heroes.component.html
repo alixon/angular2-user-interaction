@@ -4,8 +4,9 @@
     <li *ngFor="#hero of heroes"
         [class.selected] = "hero === selectedHero"
         (click)="onSelect(hero)">
-        <input [(ngModel)]="hero.selected" type="checkbox"/>
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <md-checkbox [checked]="hero.selected" (change)="hero.selected = $event">
+          <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </md-checkbox>
     </li>
 </ul>
 <button [disabled]="!someHeroSelected()"  (click)="removeSelectedHeroes()">Delete</button>

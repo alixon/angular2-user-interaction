@@ -34,10 +34,22 @@
             defaultExtension: 'js'
           },
           "angular2-google-maps": {"defaultExtension": "js"},
-          "ng2-slim-loading-bar": {"defaultExtension": "js"}
+          "ng2-slim-loading-bar": {"defaultExtension": "js"},
+          
+          '@angular2-material/core': {
+            format: 'register',
+            defaultExtension: 'js',
+            main: 'core.js'
+          },
+          '@angular2-material/checkbox': {
+            format: 'register',
+            defaultExtension: 'js',
+            main: 'checkbox.js'
+          },
         },
         "paths": {
-          "ng2-slim-loading-bar*": "node_modules/ng2-slim-loading-bar*"
+          "ng2-slim-loading-bar*": "node_modules/ng2-slim-loading-bar*",
+          "@angular2-material*": "node_modules/@angular2-material/checkbox/checkbox.js"
         }
       });
       System.import('app/boot')

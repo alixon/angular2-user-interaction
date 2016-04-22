@@ -8,6 +8,7 @@ import { DashboardComponent } from 'app/dashboard/dashboard.component';
 import { HeroesMapComponent } from 'app/heroes-map/heroes-map.component';
 import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component';
 
+
 @RouteConfig([
   {
     path: '/dashboard',
