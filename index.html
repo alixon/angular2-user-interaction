@@ -46,10 +46,16 @@
             defaultExtension: 'js',
             main: 'checkbox.js'
           },
+          '@angular2-material/button': {
+            format: 'register',
+            defaultExtension: 'js',
+            main: 'button.js'
+          }
         },
         "paths": {
           "ng2-slim-loading-bar*": "node_modules/ng2-slim-loading-bar*",
-          "@angular2-material*": "node_modules/@angular2-material/checkbox/checkbox.js"
+          "@angular2-material/checkbox": "node_modules/@angular2-material/checkbox/checkbox.js",
+          "@angular2-material/button": "node_modules/@angular2-material/button/button.js"
         }
       });
       System.import('app/boot')

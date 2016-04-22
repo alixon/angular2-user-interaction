@@ -9,7 +9,10 @@
         </md-checkbox>
     </li>
 </ul>
-<button [disabled]="!someHeroSelected()"  (click)="removeSelectedHeroes()">Delete</button>
+<button md-raised-button
+  [disabled]="!someHeroSelected()" 
+  (click)="removeSelectedHeroes()">Deleted</button>
+
 
 <div *ngIf="selectedHero">
   <h2>
