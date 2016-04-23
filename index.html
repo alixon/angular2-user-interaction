@@ -52,10 +52,11 @@
             main: 'button.js'
           }
         },
-        "paths": {
-          "ng2-slim-loading-bar*": "node_modules/ng2-slim-loading-bar*",
-          "@angular2-material/checkbox": "node_modules/@angular2-material/checkbox/checkbox.js",
-          "@angular2-material/button": "node_modules/@angular2-material/button/button.js"
+        "map": {
+          "ng2-slim-loading-bar": "node_modules/ng2-slim-loading-bar",
+          "@angular2-material/core": "node_modules/@angular2-material/core",
+          "@angular2-material/checkbox": "node_modules/@angular2-material/checkbox",
+          "@angular2-material/button": "node_modules/@angular2-material/button"
         }
       });
       System.import('app/boot')
