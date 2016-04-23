@@ -1,6 +1,9 @@
 import { Component } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from 'angular2/router';
 import { SlimLoadingBarService, SlimLoadingBar } from 'ng2-slim-loading-bar/ng2-slim-loading-bar';
+import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
+import { MdButton } from '@angular2-material/button';
+import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 
 import { HeroService }     from 'app/shared/hero.service';
 import { HeroesComponent } from 'app/heroes/heroes.component';
@@ -34,7 +37,15 @@ import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component';
   selector: 'my-app',
   styleUrls: ['app/app.component.css'],
   templateUrl: 'app/app.component.html',
-  directives: [ ROUTER_DIRECTIVES, SlimLoadingBar, HeroesComponent, HeroesMapComponent ],
+  directives: [ 
+    ROUTER_DIRECTIVES, 
+    SlimLoadingBar, 
+    HeroesComponent, 
+    HeroesMapComponent, 
+    MD_SIDENAV_DIRECTIVES, 
+    MD_LIST_DIRECTIVES,
+    MdButton 
+  ],
   providers: [ ROUTER_PROVIDERS, SlimLoadingBarService , HeroService ]
 })
 export class AppComponent {
@@ -56,4 +67,6 @@ export class AppComponent {
         setTimeout(() => {
             this.slimLoadingBarService.complete();
         }, 2000);
+    }
+    
 }

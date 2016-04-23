@@ -1,9 +1,27 @@
-<h1>{{title}}</h1>
-<nav>
-  <a [routerLink]="['Dashboard']">Dashboard</a>
-  <a [routerLink]="['Heroes']">Heroes</a>
-  <a [routerLink]="['HeroesMap']">Map</a>
-</nav>
+  <md-sidenav-layout>
+    <md-sidenav #start opened="true">
+      
+      <nav>
+      <md-list>
+        <md-list-item ><a [routerLink]="['Dashboard']">Dashboard</a></md-list-item>
+        <md-list-item ><a [routerLink]="['Heroes']">Heroes</a></md-list-item>
+        <md-list-item ><a [routerLink]="['HeroesMap']">Map</a></md-list-item>
+      </md-list>
+      </nav>
+      <br>
+      <button md-button (click)="start.close()">Close</button>
+    </md-sidenav>
 
-<router-outlet></router-outlet>
-<ng2-slim-loading-bar [height]="2" [color] = "'red'"></ng2-slim-loading-bar>
+    <button md-fab (click)="start.open()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 18 18" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+          <path d="M0 0h18v18h-18z" fill="none"></path>
+          <path d="M2 13.5h14v-1.5h-14v1.5zm0-4h14v-1.5h-14v1.5zm0-5.5v1.5h14v-1.5h-14z"></path>
+      </svg>
+    </button>
+
+    <h1>{{title}}</h1>
+
+    <router-outlet></router-outlet>
+    <ng2-slim-loading-bar [height]="2" [color] = "'red'"></ng2-slim-loading-bar>
+  </md-sidenav-layout>
+
