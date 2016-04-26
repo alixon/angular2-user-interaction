@@ -1,19 +1,24 @@
 
 import {HEROES} from 'app/shared/mock-heroes';
 import {Injectable} from 'angular2/core';
-
+import { Http, Headers, HTTP_PROVIDERS } from 'angular2/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class HeroService {
     
+    constructor(public _http: Http ) {}
+    
     getHeroes() {
-        return Promise.resolve(HEROES);
+        return this._http
+            .get('http://nodespace-alixon.c9users.io:8081/api/heroes')
+            .map(res => res.json());
     }
     
     getHero(id: number) {
-        return Promise.resolve(HEROES).then(
-            heroes => heroes.filter(hero => hero.id === id)[0]
-        );
+        return this.getHeroes().filter(hero => hero.id === id);
+        
     }
     
     generateCoordinate() {
