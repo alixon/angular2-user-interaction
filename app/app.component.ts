@@ -5,11 +5,13 @@ import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MdButton } from '@angular2-material/button';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 
+import { SecureRouterOutlet }     from 'app/shared/secure-outlet.component';
 import { HeroService }     from 'app/shared/hero.service';
 import { HeroesComponent } from 'app/heroes/heroes.component';
 import { DashboardComponent } from 'app/dashboard/dashboard.component';
 import { HeroesMapComponent } from 'app/heroes-map/heroes-map.component';
 import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component';
+import { LoginComponent } from 'app/login/login.component';
 
 
 @RouteConfig([
@@ -21,7 +23,8 @@ import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component';
   }, {
     path: '/heroes',
     name: 'Heroes',
-    component: HeroesComponent
+    component: HeroesComponent,
+    data:{ roles:['admin'] }
   }, {
     path: '/detail/:id',
     name: 'HeroDetail',
@@ -30,6 +33,11 @@ import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component';
     path: '/map',
     name: 'HeroesMap',
     component: HeroesMapComponent
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginComponent
   }
   
 ])
@@ -44,7 +52,8 @@ import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component';
     HeroesMapComponent, 
     MD_SIDENAV_DIRECTIVES, 
     MD_LIST_DIRECTIVES,
-    MdButton 
+    MdButton,
+    SecureRouterOutlet
   ],
   providers: [ ROUTER_PROVIDERS, SlimLoadingBarService , HeroService ]
 })

@@ -1,0 +1,28 @@
+ <!-- template -->
+ <!-- On form submit, we call the Login event with the username and the password from the inputs -->
+ <!--form (submit)="login($event, username.value, password.value)">
+   <label for="username">Username</label>
+   <input type="text" #username class="form-control" id="username" placeholder="Username">
+   <label for="password">Password</label>
+   <input type="password" #password class="form-control" id="password" placeholder="Password">
+   <button type="submit">Submit</button>
+ </form-->
+ 
+ <h1>Register</h1>
+  <form #f="ngForm" (ngSubmit)="authenticate(f)">
+    <div ngControlGroup="credentials">
+      <label for="username">Username</label>
+      <input type="text" ngControl="username" class="form-control" id="username" placeholder="Username">
+      <label for="password">Password</label>
+      <input type="password" ngControl="password" class="form-control" id="password" placeholder="Password">
+      <button type="submit">Submit</button>
+    </div>
+ </form>
+ 
+ {{randomQuote}}<br/>
+ <button (click)="getRandomQuote()">Get Random Quote</button>
+ 
+ <h2>Secret Quote</h2>
+    <hr>
+    <h3>{{secretQuote}}</h3>
+ <button (click)="getSecretQuote()">Get Secret Quote!</button>

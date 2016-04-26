@@ -1,5 +1,5 @@
   <md-sidenav-layout>
-    <md-sidenav #start opened="true">
+    <md-sidenav #start>
       
       <nav>
       <md-list>
@@ -21,7 +21,7 @@
 
     <h1>{{title}}</h1>
 
-    <router-outlet></router-outlet>
+    <secure-outlet signin="/login" unauthorized="/Login"></secure-outlet>
     <ng2-slim-loading-bar [height]="2" [color] = "'red'"></ng2-slim-loading-bar>
   </md-sidenav-layout>
 
