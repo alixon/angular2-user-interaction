@@ -11,9 +11,19 @@ export class HeroService {
     constructor(public _http: Http ) {}
     
     getHeroes() {
+        
+        var jwt = localStorage.getItem('id_token');
+        var authHeader = new Headers();
+        if(jwt) {
+          authHeader.append('Authorization', 'Bearer ' + jwt);      
+        }
+      
         return this._http
-            .get('http://nodespace-alixon.c9users.io:8081/api/heroes')
-            .map(res => res.json());
+            .get('http://nodespace-alixon.c9users.io:8081/api/protected/random-quote', {
+                 headers: authHeader
+            })
+            .map(res => res.json())
+
     }
     
     getHero(id: number) {

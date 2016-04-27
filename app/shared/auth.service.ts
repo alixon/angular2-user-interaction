@@ -15,12 +15,12 @@ export class AuthService extends IAuthService {
   user:User;
 
   isAuthenticated():boolean {
-    return this.user !== null;
+    // return this.user !== null;
+    return !!localStorage.id_token;
   }
 
   hasRole(string[] roles):boolean {
-    // return this.isAuthenticate() && [check intersection of user roles]
-    return false;
+    return this.isAuthenticated() && true;
   }
 
   // other auth functionality, sign-in, token handling etc
