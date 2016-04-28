@@ -12,13 +12,14 @@ import { DashboardComponent } from 'app/dashboard/dashboard.component';
 import { HeroesMapComponent } from 'app/heroes-map/heroes-map.component';
 import { HeroDetailComponent } from 'app/hero-detail/hero-detail.component';
 import { LoginComponent } from 'app/login/login.component';
-
+import { AuthService } from 'app/shared/auth.service';
 
 @RouteConfig([
   {
     path: '/dashboard',
     name: 'Dashboard',
     component: DashboardComponent,
+    data: { roles: [] },
     useAsDefault: true
   }, {
     path: '/heroes',
@@ -28,10 +29,12 @@ import { LoginComponent } from 'app/login/login.component';
   }, {
     path: '/detail/:id',
     name: 'HeroDetail',
+    data: { roles: [] },
     component: HeroDetailComponent
   }, {
     path: '/map',
     name: 'HeroesMap',
+    data: { roles: [] },
     component: HeroesMapComponent
   },
   {
@@ -63,7 +66,8 @@ export class AppComponent {
   
   constructor(
     private _router:Router,
-    private slimLoadingBarService:SlimLoadingBarService
+    private slimLoadingBarService:SlimLoadingBarService,
+    private _authService: AuthService
     ) {
       _router.subscribe(()=>{this.startLoading()});
     };
@@ -78,4 +82,11 @@ export class AppComponent {
         }, 2000);
     }
     
+    
+    logout(){
+      this._authService.logout();
+      this._router.navigate(['Login']);
+    }
+
+  
 }

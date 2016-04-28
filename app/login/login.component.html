@@ -9,20 +9,16 @@
  </form-->
  
  <h1>Register</h1>
-  <form #f="ngForm" (ngSubmit)="authenticate(f)">
+  <form #f="ngForm" (ngSubmit)="login(f)">
     <div ngControlGroup="credentials">
       <label for="username">Username</label>
       <input type="text" ngControl="username" class="form-control" id="username" placeholder="Username">
       <label for="password">Password</label>
       <input type="password" ngControl="password" class="form-control" id="password" placeholder="Password">
-      <button type="submit">Submit</button>
+      <button type="submit">Log In</button>
     </div>
  </form>
  
  {{randomQuote}}<br/>
  <button (click)="getRandomQuote()">Get Random Quote</button>
  
- <h2>Secret Quote</h2>
-    <hr>
-    <h3>{{secretQuote}}</h3>
- <button (click)="getSecretQuote()">Get Secret Quote!</button>

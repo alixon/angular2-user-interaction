@@ -2,28 +2,19 @@
 import {HEROES} from 'app/shared/mock-heroes';
 import {Injectable} from 'angular2/core';
 import { Http, Headers, HTTP_PROVIDERS } from 'angular2/http';
+import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class HeroService {
     
-    constructor(public _http: Http ) {}
+    constructor(public authHttp: AuthHttp) {}
     
     getHeroes() {
-        
-        var jwt = localStorage.getItem('id_token');
-        var authHeader = new Headers();
-        if(jwt) {
-          authHeader.append('Authorization', 'Bearer ' + jwt);      
-        }
-      
-        return this._http
-            .get('http://nodespace-alixon.c9users.io:8081/api/protected/random-quote', {
-                 headers: authHeader
-            })
+        return this.authHttp
+            .get('http://nodespace-alixon.c9users.io:8081/api/protected/random-quote')
             .map(res => res.json())
-
     }
     
     getHero(id: number) {

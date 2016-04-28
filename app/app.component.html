@@ -10,6 +10,11 @@
       </nav>
       <br>
       <button md-button (click)="start.close()">Close</button>
+      
+      <div *ngIf="_authService.isAuthenticated()">
+        <p>Hi, <em>{{_authService.getUsername()}}</em></p>
+        <button (click)="logout()">Log Out</button>
+      </div>
     </md-sidenav>
 
     <button md-fab (click)="start.open()">

@@ -76,7 +76,8 @@ export class HeroesComponent implements OnInit,AfterViewInit {
     getHeroes() {
       this._heroService
         .getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
+        .subscribe(heroes => this.heroes = heroes,
+                    error => console.log(error));
     }
     
     someHeroSelected() {
