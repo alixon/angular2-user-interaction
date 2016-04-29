@@ -10,17 +10,16 @@ export class SecureRouterOutlet extends RouterOutlet {
   signin:string;
   unauthorized:string;
 
-  private parentRouter: Router;
-  private authService: AuthService;
-
-  constructor(_elementRef: ElementRef, _loader: DynamicComponentLoader,
-              _parentRouter: Router, @Attribute('name') nameAttr: string,
-              authService:AuthService,
-              @Attribute('signin') signinAttr: string,
-              @Attribute('unauthorized') unauthorizedAttr: string) {
+  constructor(
+    _elementRef: ElementRef, 
+    _loader: DynamicComponentLoader,
+    private _parentRouter: Router, 
+    @Attribute('name') nameAttr: string,
+    private _authService: AuthService,
+    @Attribute('signin') signinAttr: string,
+    @Attribute('unauthorized') unauthorizedAttr: string
+  ) {
     super(_elementRef, _loader, _parentRouter, nameAttr);
-    this.parentRouter = _parentRouter;
-    this.authService = authService;
     this.signin = signinAttr;
     this.unauthorized = unauthorizedAttr;
   }
@@ -36,19 +35,19 @@ export class SecureRouterOutlet extends RouterOutlet {
     // if user isn't authenticated then redirect to sign-in route
     // pass the URL to this route for redirecting back after auth
     // TODO: include querystring parameters too?
-    if (!this.authService.isAuthenticated()) {
-      var ins = this.parentRouter.generate([this.signin,{url:location.pathname}]);
+    if (!this._authService.isAuthenticated()) {
+      var ins = this._parentRouter.generate([this.signin,{url:location.pathname}]);
       return super.activate(ins.component);
     }
 
     // if no specific roles are required *or* the user has one of the
     // roles required then the route can be activated
-    if (roles.length == 0 || this.authService.hasRole(roles)) {
+    if (roles.length == 0 || this._authService.hasRole(roles)) {
       return super.activate(nextInstruction);
     }
 
     // user has insufficient role permissions so redirect to denied
-    var ins = this.parentRouter.generate([this.unauthorized]);
+    var ins = this._parentRouter.generate([this.unauthorized]);
     return super.activate(ins.component);
   }
 

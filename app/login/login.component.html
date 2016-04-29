@@ -8,17 +8,25 @@
    <button type="submit">Submit</button>
  </form-->
  
- <h1>Register</h1>
-  <form #f="ngForm" (ngSubmit)="login(f)">
-    <div ngControlGroup="credentials">
-      <label for="username">Username</label>
-      <input type="text" ngControl="username" class="form-control" id="username" placeholder="Username">
-      <label for="password">Password</label>
-      <input type="password" ngControl="password" class="form-control" id="password" placeholder="Password">
-      <button type="submit">Log In</button>
-    </div>
- </form>
- 
- {{randomQuote}}<br/>
- <button (click)="getRandomQuote()">Get Random Quote</button>
+<div *ngIf="!_authService.isAuthenticated()">
+    <h1>Login</h1>
+    <form #f="ngForm" (ngSubmit)="login(f)">
+        <div ngControlGroup="credentials">
+          <label for="username">Username</label>
+          <input type="text" ngControl="username" class="form-control" id="username" placeholder="Username">
+          <label for="password">Password</label>
+          <input type="password" ngControl="password" class="form-control" id="password" placeholder="Password">
+          <button type="submit">Log In</button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="_authService.isAuthenticated()">
+    <p>Hi, <em>{{_authService.getUsername()}}</em></p>
+    <p>Thank you for coming</p>
+    <button (click)="logout()">Log Out</button>
+</div>
+
+{{randomQuote}}<br/>
+<button (click)="getRandomQuote()">Get Random Quote</button>
  

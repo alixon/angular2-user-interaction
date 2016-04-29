@@ -2,18 +2,17 @@
     <md-sidenav #start>
       
       <nav>
-      <md-list>
+      <md-list (click)="start.close()">
         <md-list-item ><a [routerLink]="['Dashboard']">Dashboard</a></md-list-item>
         <md-list-item ><a [routerLink]="['Heroes']">Heroes</a></md-list-item>
         <md-list-item ><a [routerLink]="['HeroesMap']">Map</a></md-list-item>
       </md-list>
       </nav>
       <br>
-      <button md-button (click)="start.close()">Close</button>
-      
+
       <div *ngIf="_authService.isAuthenticated()">
         <p>Hi, <em>{{_authService.getUsername()}}</em></p>
-        <button (click)="logout()">Log Out</button>
+        <button (click)="logout(); start.close()">Log Out</button>
       </div>
     </md-sidenav>
 

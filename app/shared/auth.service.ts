@@ -2,6 +2,7 @@
 import {Injectable} from 'angular2/core';
 import {tokenNotExpired, JwtHelper} from 'angular2-jwt';
 import {Http, Headers} from 'angular2/http';
+import 'rxjs/Rx';
 
 export abstract class IAuthService {
   // is the current user authenticated?
@@ -32,12 +33,14 @@ export class AuthService extends IAuthService {
   }
 
   login(credentials) {
-    this.http.post(this.LOGIN_URL, JSON.stringify(credentials), { headers: this.contentHeader })
+    return this.http
+      .post(this.LOGIN_URL, JSON.stringify(credentials), { headers: this.contentHeader })
       .map(res => res.json())
-      .subscribe(
+      .do(
         data => this.authSuccess(data.id_token),
         err => console.log(err)
       );
+
   }
 
   public logout() {
