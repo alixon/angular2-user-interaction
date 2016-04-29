@@ -46,7 +46,6 @@ export class AuthService extends IAuthService {
   public logout() {
     localStorage.removeItem('profile');
     localStorage.removeItem('id_token');
-    // this.router.navigate(['Home']);
   }
   
   signup(credentials) {

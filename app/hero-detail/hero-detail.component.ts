@@ -35,10 +35,13 @@ export class HeroDetailComponent implements OnInit {
     ngOnInit() {
         let id = +this._routeParams.get('id');
         this._heroService.getHero(id)
-            .then(hero => { 
+            .subscribe(hero => {
+                if( !hero ) return;
                 this.hero = hero;
                 this.mapOptions.centerCords = hero.coordinates;
-            });
+            },
+            log => console.log(log)
+        );
             
     }
     

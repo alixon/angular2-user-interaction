@@ -1,6 +1,7 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { Router } from 'angular2/router';
 import { Headers } from 'angular2/http';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import {AuthHttp, AuthConfig, AUTH_PROVIDERS} from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
@@ -17,20 +18,14 @@ class CredentialsModel {
   templateUrl: 'app/login/login.component.html',
   providers: [ AuthService ]
 })
-// @CanActivate(()=>{ console.log(this) ; return false})
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   constructor(
     private _router:Router, 
     private _authHttp: AuthHttp,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _toastr: ToastsManager
   ) {}
 
-  ngOnInit() {
-    //   console.log('+');
-    // if( this._authService.isAuthenticated() ) {
-    //   this._router.parent.navigate(['Dashboard']);
-    // }
-  }
 
   getRandomQuote() {
     
@@ -43,6 +38,7 @@ export class LoginComponent implements OnInit {
       );
   }
   
+  
   login(form) {
     this._authService.login({
       username: form.value.credentials.username,
@@ -51,13 +47,16 @@ export class LoginComponent implements OnInit {
     .subscribe(
         data => {
           this._router.parent.navigateByUrl(location.pathname);
+          this._toastr.info('You are logged in');
         },
-        err => console.log(err)
+        res => this._toastr.error(res._body);
       )
   }
   
+  
   logout() {
     this._authService.logout();
+    this._toastr.info('You are logged out!');
   }
   
 }

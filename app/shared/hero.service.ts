@@ -18,8 +18,7 @@ export class HeroService {
     }
     
     getHero(id: number) {
-        return this.getHeroes().filter(hero => hero.id === id);
-        
+        return this.getHeroes().map(heroes => heroes.filter(h => h.id == id)[0] );
     }
     
     generateCoordinate() {

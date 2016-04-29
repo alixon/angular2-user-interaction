@@ -1,19 +1,14 @@
 /// <reference path="./toaster.d.ts" />
 import {Component, Input, OnInit, ViewChild, provide} from 'angular2/core';
 import {Router} from "angular2/router";
-import {ToastsManager, ToastOptions} from 'ng2-toastr/ng2-toastr';
 import { MdCheckbox } from '@angular2-material/checkbox';
 import { MdButton } from '@angular2-material/button';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import {HeroDetailComponent} from 'app/hero-detail/hero-detail.component';
 import {Hero} from 'app/shared/hero';
 import {HeroService} from 'app/shared/hero.service';
 import {AlertComponent} from "app/my-modal/alert.component";
-
-let toastrOptions = {
-    autoDismiss: false,
-    positionClass: 'toast-bottom-right',
-  };
   
 
 @Component({
@@ -28,9 +23,7 @@ let toastrOptions = {
       MdButton
     ],
     providers: [
-      AlertComponent,
-      ToastsManager,
-      provide(ToastOptions, { useValue: new ToastOptions(toastrOptions) })
+      AlertComponent
     ]
 })
 export class HeroesComponent implements OnInit,AfterViewInit {
